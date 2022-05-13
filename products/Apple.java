@@ -1,15 +1,21 @@
-package solid;
+package solid.products;
 
-//SRP
-public class Product {
+public class Apple extends Product {
     private String name;
     private double price;
     private double rate;
 
-    public Product(String name, double price, double rate) {
+    public Apple(String name, double price, double rate) {
         this.name = name;
         this.price = price;
         this.rate = rate;
+    }
+
+    @Override
+    public void print() {
+        System.out.println("Название: " + name
+                + ", цена: " + price
+                + ", рейтинг: " + rate);
     }
 
     public String getName() {
@@ -22,11 +28,5 @@ public class Product {
 
     public double getRate() {
         return rate;
-    }
-
-    //DRY
-    @Override
-    public String toString() {
-        return "Название - " + name + " Цена - " + price + " Рейтинг - " + rate;
     }
 }

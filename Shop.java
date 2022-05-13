@@ -1,39 +1,45 @@
 package solid;
 
+import solid.interfaces.Printer;
+import solid.products.Product;
+
 import java.util.List;
 
+//SRP - добавляет в корзину, удаляет из корзины. Все.
 public class Shop implements Printer {
 
     private List<Product> availableProducts;
+    CashRegister cashRegister;
     Basket basket;
 
-    public Shop(List availableProducts, Basket basket) {
+    public Shop(List availableProducts, CashRegister cashRegister) {
         this.availableProducts = availableProducts;
-        this.basket = basket;
+        this.cashRegister = cashRegister;
+        basket = new Basket();
 
     }
 
     @Override
     public void print() {
         for (Product product : availableProducts) {
-            System.out.println(product.toString());
+            product.print();
         }
     }
 
-    //LSP потому как в классе Шоп добавление просто по имени объекта, без описания его полей
     public void addToBasket(String name) {
         for (Product product : availableProducts) {
             if (product.getName().equals(name)) {
-                basket.addToBasket(product);
+                basket.productList.add(product);
+                break;
             }
         }
     }
 
-    //LSP потому как в классе Шоп удаление просто по имени объекта, без описания его полей
     public void removeFromBasket(String name) {
-        for (Product product : availableProducts) {
+        for (Product product : basket.productList) {
             if (product.getName().equals(name)) {
-                basket.removeFromBasket(product);
+                basket.productList.remove(product);
+                break;
             }
         }
     }

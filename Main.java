@@ -1,27 +1,31 @@
 package solid;
 
+import solid.products.Apple;
+import solid.products.Product;
+import solid.products.Smartphone;
+import solid.products.Smartwatch;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-
         List<Product> productList = new ArrayList<>();
-        productList.add(new Product("Яблоко", 12.4, 4.9));
-        productList.add(new Product("Груша", 23.2, 4.3));
+        productList.add(new Apple("Сезонные", 4.55, 4.9));
+        productList.add(new Smartphone("iPhone", 999.99, 3.5));
+        productList.add(new Smartwatch("MiBand 5", 14.99, 4.6));
 
-        Shop shop = new Shop(productList, new Basket());
+        Shop shop = new Shop(productList, new CashRegister("IBM", 9_990, 4.9));
         shop.print();
         System.out.println();
 
-        shop.addToBasket("Груша");
-        shop.addToBasket("Яблоко");
+        shop.addToBasket("iPhone");
+        shop.addToBasket("iPhone");
+        shop.addToBasket("Сезонные");
         shop.basket.print();
         System.out.println();
 
-        shop.removeFromBasket("Груша");
+        shop.removeFromBasket("iPhone");
         shop.basket.print();
-        System.out.println();
-
     }
 }
