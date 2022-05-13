@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         List<Product> productList = new ArrayList<>();
         productList.add(new Apple("Сезонные", 4.55, 4.9));
         productList.add(new Smartphone("iPhone", 999.99, 3.5));
@@ -27,5 +27,14 @@ public class Main {
 
         shop.removeFromBasket("iPhone");
         shop.basket.print();
+        System.out.println();
+
+        shop.buy();
+        shop.basket.print();
+        System.out.println();
+
+        shop.repeatPreviousPurchase();
+        shop.basket.print();
+
     }
 }

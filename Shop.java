@@ -2,13 +2,12 @@ package solid;
 
 import solid.interfaces.Printer;
 import solid.products.Product;
-
 import java.util.List;
 
-//SRP - добавляет в корзину, удаляет из корзины. Все.
 public class Shop implements Printer {
 
     private List<Product> availableProducts;
+    protected List<Product> previousOrder;
     CashRegister cashRegister;
     Basket basket;
 
@@ -43,4 +42,15 @@ public class Shop implements Printer {
             }
         }
     }
+
+    public void buy() {
+        previousOrder = List.copyOf(basket.productList);
+        basket.productList.clear();
+    }
+
+    public void repeatPreviousPurchase() {
+        basket.setProductList(previousOrder);
+    }
+
+
 }
